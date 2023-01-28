@@ -8,14 +8,15 @@ import kgb.toyproject.unitconverter.databinding.ActivityMainBinding
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
+    var inputNumber : Int = 0
+    var cmToM = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        var inputNumber : Int = 0
-        var cmToM = true
+
 
         binding.editNumber.addTextChangedListener { text ->
             inputNumber = if(text.isNullOrEmpty()) 0
@@ -40,5 +41,17 @@ class MainActivity : AppCompatActivity() {
                 binding.textNumber.text = inputNumber.times(100).toString()
             }
         }
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        outState.putBoolean("cmToM", cmToM)
+        super.onSaveInstanceState(outState)
+    }
+
+    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
+        cmToM = savedInstanceState.getBoolean("cmToM")
+        binding.textInputUnit.text = if(cmToM) "cm" else "m"
+        binding.textOutputUnit.text = if(cmToM) "m" else "cm"
+        super.onRestoreInstanceState(savedInstanceState)
     }
 }
