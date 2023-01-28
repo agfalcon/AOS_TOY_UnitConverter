@@ -13,6 +13,7 @@
         android:textSize="24sp"
         android:layout_height="wrap_content"
         android:hint="자연수를 입력해주세요."
+        android:maxLength="7"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -61,6 +62,7 @@
         />
 
     <ImageButton
+        android:id="@+id/btn_swap"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="@id/text_input_unit"
